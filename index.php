@@ -18,7 +18,7 @@ $f3->menu->setItems($menuItems);
 $f3->db = new DB\SQL(
     'mysql:host=localhost;port=3306;dbname=logginator',
     'root',
-    'numauita11'
+    ''
 );
 
 $f3->route('GET /',
