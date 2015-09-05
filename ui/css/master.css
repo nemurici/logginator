@@ -1,0 +1,30 @@
+.device{
+  border:1px solid black;
+  padding-top: 20px ;
+  padding-bottom: 20px ;
+  margin-bottom: 10px
+}
+.cpuicon{
+  display: inline;
+  background-image: url(../images/cpu5.png);
+  background-repeat: no-repeat;
+}
+.ramicon{
+  display: inline;
+  background-image: url(../images/ram.png);
+  background-repeat: no-repeat;
+}
+.uptimeicon{
+  display: inline;
+  background-image: url(../images/uptime.png);
+  background-repeat: no-repeat;
+}
+.uppermenu{
+  padding:5px;
+}
+.devices > .row{
+  width:100%;
+}
+.informations div{
+  padding-bottom: 10px;
+}

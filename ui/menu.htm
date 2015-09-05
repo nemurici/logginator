@@ -1,0 +1,15 @@
+<div class="col-lg-12">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Logginator</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <repeat group="{{ @items }}" key="{{ @key }}" value="{{ @value }}">
+              <li class="{{ @value.activ == 1?  'active': ''}}"><a href="/{{ @value.slug }}">{{ @value.name }}</a></li>
+        </repeat>
+      </ul>
+      <include if="{{ @pageMenu  != null }}" href="{{ @pageMenu }}" />
+    </div>
+  </nav>
+</div>

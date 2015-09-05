@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="<?php echo $ENCODING; ?>" />
+		<title>Dashboard logger</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/ui/css/master.css" media="screen" title="custom css" charset="utf-8">
+	</head>
+	<body>
+			<div class="container">
+				<div class="row">
+					<include if="{{ count(@items) >= 1 }}" href="menu.htm" />
+					<div class="col-lg-12">
+						<include href="{{ @content }}" />
+					</div>
+				</div>
+			</div>
+
+
+			<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+			<script src="/ui/js/master.js" charset="utf-8"></script>
+			<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</body>
+</html>

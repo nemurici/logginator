@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row informations">
+    <div class="col-lg-2 col-md-12 col-sm-12">
+      NAME:<br>
+      {{ @device.name}}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      GUID:<br>
+      {{ @device.guid}}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      APIKEY:<br>
+      {{ @device.apikey}}
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      LAST TIME ONLINE:<br>
+      <span id="lasttimeonline">
+        {{ @device.lasttimeonline}}
+      </span>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-6">
+      IP:<br>
+      {{ @device.ipaddress}}
+    </div>
+  </div>
+  <div id="logs" class="logs">
+  </div>
+</div>
+<script>
+window.guid = '{{ @device.guid}}';
+ document.addEventListener("DOMContentLoaded",function(){
+  window.logstemplate = '<div class="row"><hr><div class="col-lg-1 col-sm-3">%KEYWORD%</div><div class="col-lg-1 col-sm-3">%MEMPEAK%</div><div class="col-lg-2 col-sm-3">%TIMESTAMP%</div> <div class="col-lg-8 col-sm-12"> <pre>%DATA%</pre> </div></div>';
+  start = 0;
+  setInterval(function(){
+    $.get('/api/logs/'+guid+'/'+start).done(function(data){
+      for(itemkey in data){
+      item = data[itemkey];
+      $('#lasttimeonline').text(item.timestamp);
+      start = item.id;
+      prepare = window.logstemplate.replace('%KEYWORD%',item.keyword)
+                                    .replace('%MEMPEAK%', item.mempeak)
+                                    .replace('%TIMESTAMP%', item.timestamp)
+                                    .replace('%DATA%', item.data);
+      $('#logs').prepend(prepare);
+      }
+    })
+  },1000)
+});
+</script>
