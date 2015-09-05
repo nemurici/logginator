@@ -163,7 +163,7 @@ $f3->route('GET|POST /device/add',function($f3){
     $template=new Template;
     echo $template->render('layout.htm');
   }else{
-
+    
   }
 });
 $f3->run();
