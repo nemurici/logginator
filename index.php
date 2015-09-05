@@ -8,6 +8,7 @@ $f3->set('DEBUG',1);
 
 $f3->config('config.ini');
 
+$f3->host = $f3->get('HEADERS.Host');
 $f3->menu = new Menu();
 $menuItems = array();
 $menuItems[] = array('slug' => 'dashboard','name' => 'Dashboard');
@@ -18,7 +19,7 @@ $f3->menu->setItems($menuItems);
 $f3->db = new DB\SQL(
     'mysql:host=localhost;port=3306;dbname=logginator',
     'root',
-    ''
+    'numauita11'
 );
 
 $f3->route('GET /',
@@ -80,6 +81,7 @@ $f3->route('GET /device/@guid',
 			return false;
 		}
 		$items = $f3->menu->setPage('devices')->output();
+		$f3->set('hostname',$f3->host);
 		$f3->set('items',$items);
 		$f3->set('device',$device);
 		$f3->set('pageMenu','devices-menu.htm');
@@ -147,7 +149,9 @@ $f3->route('GET|POST /api/@guid/@apikey/@keyword',
 $f3->route('GET /api/logs/@guid/@last', function($f3, $params){
 	header('Content-Type: application/json');
 	$data =	$f3->db->exec("SELECT * FROM `logs` WHERE `guid`=:guid and `id`>:stamp order by id asc",array(':guid'=>$params['guid'], ':stamp'=>$params['last']));
-
+  foreach ($data as &$value) {
+    $value['data'] = print_r(json_decode($value['data']), true);
+  }
 	echo json_encode($data);
 
 	return true;
@@ -163,7 +167,7 @@ $f3->route('GET|POST /device/add',function($f3){
     $template=new Template;
     echo $template->render('layout.htm');
   }else{
-    
+
   }
 });
 $f3->run();
