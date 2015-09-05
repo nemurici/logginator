@@ -8,3 +8,4 @@ TODO:
 - make the search button work
 - make the add device page work
 - smart searching
+- dymanic graphs builder
