@@ -23,7 +23,7 @@
       {{ @device.ipaddress}}
     </div>
     <div class="col-lg-12">
-      <input name="apiurl" type="apiurl" class="form-control" value="http://{{@hostname}}/api/{{@device.guid}}/{{@device.apikey}}/general">
+      <input name="apiurl" type="apiurl" class="form-control" value="http://{{@hostname}}{{@BASE}}/api/{{@device.guid}}/{{@device.apikey}}/general">
     </div>
   </div>
   <div id="logs" class="logs">
