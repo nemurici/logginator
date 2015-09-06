@@ -6,7 +6,7 @@
       </div>
       <ul class="nav navbar-nav">
         <repeat group="{{ @items }}" key="{{ @key }}" value="{{ @value }}">
-              <li class="{{ @value.activ == 1?  'active': ''}}"><a href="/{{ @value.slug }}">{{ @value.name }}</a></li>
+              <li class="{{ @value.activ == 1?  'active': ''}}"><a href="{{ @value.slug }}">{{ @value.name }}</a></li>
         </repeat>
       </ul>
       <include if="{{ @pageMenu  != null }}" href="{{ @pageMenu }}" />

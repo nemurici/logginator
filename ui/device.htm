@@ -35,7 +35,7 @@ window.guid = '{{ @device.guid}}';
   window.logstemplate = '<div class="row"><hr><div class="col-lg-1 col-sm-3">%KEYWORD%</div><div class="col-lg-1 col-sm-3">%MEMPEAK%</div><div class="col-lg-2 col-sm-3">%TIMESTAMP%</div> <div class="col-lg-8 col-sm-12"> <pre>%DATA%</pre> </div></div>';
   start = 0;
   setInterval(function(){
-    $.get('/api/logs/'+guid+'/'+start).done(function(data){
+    $.get('api/logs/'+guid+'/'+start).done(function(data){
       for(itemkey in data){
       item = data[itemkey];
       $('#lasttimeonline').text(item.timestamp);

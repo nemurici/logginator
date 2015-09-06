@@ -1,26 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('displat_errors', 'On');
-include('classes/bootloader.php');
 $f3=require('lib/base.php');
-
 $f3->set('DEBUG',1);
-
 $f3->config('config.ini');
-
-$f3->host = $f3->get('HEADERS.Host');
-$f3->menu = new Menu();
-$menuItems = array();
-$menuItems[] = array('slug' => 'dashboard','name' => 'Dashboard');
-$menuItems[] = array('slug' => 'devices','name' => 'Devices');
-$menuItems[] = array('slug' => 'settings','name' => 'Settings');
-$f3->menu->setItems($menuItems);
-
-$f3->db = new DB\SQL(
-    'mysql:host=localhost;port=3306;dbname=logginator',
-    'root',
-    'numauita11'
-);
+include('classes/bootloader.php');
 
 $f3->route('GET /',
 	function($f3) {
