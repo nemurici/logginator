@@ -10,7 +10,14 @@ $f3->route('GET /',
 	}
 );
 
-
+function chuncksstring($length){
+	$charset = 'abcdefghijklmnopqrstuvACDEFGHIJKLMNOPQRSTUV1234567890_+-={}[]:";>?<!@#$%^^&*()~`';
+	$string = '';
+	for($i=0;$i<$length; $i++){
+		$string.=$charset[rand(0, strlen($charset)-1)];
+	}
+	return $string;
+}
 
 $f3->route('GET /dashboard',
 	function($f3) {
@@ -148,8 +155,11 @@ $f3->route('GET|POST /device/add',function($f3){
     $f3->set('content','device-add.htm');
     $template=new Template;
     echo $template->render('layout.htm');
-  }else{
-
+  }elseif($f3->get('VERB') == 'POST' && isset($_POST['name'])){
+		$random = chuncksstring(32);
+		$apikey = chuncksstring(32);
+		$f3->db->exec('INSERT into `devices` (`name`,`guid`,`apikey`) VALUES (:name, :guid , :apikey)', array(':name'=>$_POST['name'], ':guid'=>md5($random), ':apikey'=> md5($apikey)));
+		$f3->reroute('/devices');
   }
 });
 $f3->run();
