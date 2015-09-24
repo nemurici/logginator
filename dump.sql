@@ -32,7 +32,7 @@ CREATE TABLE `logs` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `keyword` varchar(32) DEFAULT NULL,
   `mempeak` bigint(20) DEFAULT NULL,
-  `data` json NOT NULL,
+  `data` longblob NOT NULL,
   PRIMARY KEY (`id`),
   KEY `guid` (`guid`),
   KEY `timestamp` (`timestamp`),
